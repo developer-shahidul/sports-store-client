@@ -17,7 +17,7 @@ const PrivateRoute = ({ children }) => {
 
   if (!user) {
     // লগইনের পর ইউজারকে আগের পেজে পাঠাবে
-    return <Navigate to="/signIn" state={{ from: location }} replace />;
+    return <Navigate to="/resister" state={{ from: location }} replace />;
     // "/resister" না, "/signIn" বা "/login" হবে (তোমার রুট অনুযায়ী)
   }
 

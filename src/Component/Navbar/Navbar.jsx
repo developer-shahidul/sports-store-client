@@ -67,7 +67,7 @@ const Navbar = () => {
           <li>
             <Link
               className="hover:underline  hover:decoration-gray-400   "
-              to={"/AddEquipments"}
+              to={"/addEquipments"}
             >
               Add Equipment
             </Link>
@@ -75,7 +75,7 @@ const Navbar = () => {
           <li>
             <Link
               className="hover:underline  hover:decoration-gray-400   "
-              to={"/equipmetList"}
+              to={"/equipmentList"}
             >
               My List
             </Link>
