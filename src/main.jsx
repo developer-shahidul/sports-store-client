@@ -24,7 +24,17 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <App></App>,
-        loader: () => fetch("http://localhost:3000/items"),
+        loader: async () => {
+          const res = await fetch(
+            "https://sports-store-server-ivory.vercel.app/items"
+          );
+          if (!res.ok) {
+            throw new Response("Failed to load items", {
+              status: res.status,
+            });
+          }
+          return res.json();
+        },
       },
       {
         path: "/equipments",
@@ -33,7 +43,17 @@ const router = createBrowserRouter([
             <Equipments></Equipments>
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:3000/items"),
+        loader: async () => {
+          const res = await fetch(
+            "https://sports-store-server-ivory.vercel.app/items"
+          );
+          if (!res.ok) {
+            throw new Response("Failed to load items", {
+              status: res.status,
+            });
+          }
+          return res.json();
+        },
       },
       {
         path: "/equipmetList",
@@ -68,16 +88,31 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
 
-        loader: ({ params }) =>
-          fetch(`http://localhost:3000/items/${params.id}`),
+        loader: async ({ params }) => {
+          const res = await fetch(
+            `https://sports-store-server-ivory.vercel.app/items/${params.id}`
+          );
+          if (!res.ok) {
+            throw new Response("Failed to load items", {
+              status: res.status,
+            });
+          }
+          return res.json();
+        },
       },
       {
         path: "/details/:id",
         element: <Details></Details>,
         loader: async ({ params }) => {
-          const res = await fetch(`http://localhost:3000/items/${params.id}`);
-          const data = await res.json();
-          return data;
+          const res = await fetch(
+            `https://sports-store-server-ivory.vercel.app/items/${params.id}`
+          );
+          if (!res.ok) {
+            throw new Response("Failed to load items", {
+              status: res.status,
+            });
+          }
+          return res.json();
         },
       },
       {

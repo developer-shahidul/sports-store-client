@@ -15,7 +15,7 @@ const Footer = () => {
   return (
     <div
       className="mt-10"
-      style={{ backgroundImage: `url($'{footerlogo}')`, objectFit: "cover" }}
+      style={{ backgroundImage: `url('${"footerlogo"}')`, objectFit: "cover" }}
     >
       <div className="md:flex lg:gap-36 gap-16  space-y-20 md:space-y-0 lg:w-330 pt-24 mx-auto px-2 lg:px-0 pb-12">
         <div className="w-full">

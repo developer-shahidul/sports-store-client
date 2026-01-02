@@ -23,7 +23,7 @@ const Resister = () => {
         const createAt = result.user.metadata.creationTime;
         // console.log(createAt);
         const newUser = { name, email, createAt };
-        fetch("http://localhost:3000/users", {
+        fetch("https://sports-store-server-ivory.vercel.app/users", {
           method: "POST",
           headers: {
             "Content-type": "application/json",

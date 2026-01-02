@@ -39,7 +39,7 @@ const AddEquipments = () => {
       email,
     };
 
-    fetch("http://localhost:3000/items", {
+    fetch("https://sports-store-server-ivory.vercel.app/items", {
       method: "POST",
       headers: {
         "Content-type": "application/json",

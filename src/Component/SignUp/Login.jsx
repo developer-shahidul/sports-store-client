@@ -37,7 +37,7 @@ const Login = () => {
         // console.log(lastLogInAt);
         const newUser = { email, lastSignInTime };
 
-        fetch("http://localhost:3000/users", {
+        fetch("https://sports-store-server-ivory.vercel.app/users", {
           method: "PATCH",
           headers: {
             "Content-type": "application/json",

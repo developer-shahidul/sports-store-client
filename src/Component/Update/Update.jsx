@@ -48,7 +48,7 @@ const Update = () => {
       rating,
     };
 
-    fetch(`http://localhost:3000/items/${_id}`, {
+    fetch(`https://sports-store-server-ivory.vercel.app/items/${_id}`, {
       method: "PUT",
       headers: {
         "Content-type": "application/json",

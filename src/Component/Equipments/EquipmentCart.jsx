@@ -29,7 +29,7 @@ const EquipmentCart = ({ equipment, equipments, setEquipments }) => {
     }
     const body = { email: user.email };
 
-    fetch(`http://localhost:3000/items/like/${id}`, {
+    fetch(`https://sports-store-server-ivory.vercel.app/items/like/${id}`, {
       method: "PATCH",
       headers: {
         "Content-type": "application/json",
@@ -64,7 +64,7 @@ const EquipmentCart = ({ equipment, equipments, setEquipments }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/items/${id}`, {
+        fetch(`https://sports-store-server-ivory.vercel.app/items/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -82,7 +82,7 @@ const EquipmentCart = ({ equipment, equipments, setEquipments }) => {
             );
             setEquipments(remaining);
 
-            navigate("/login", { replace: true }); // ✅ redirect to error page
+            navigate("/error", { replace: true }); // ✅ redirect to error page
           })
           .catch((err) => console.log(err));
       }

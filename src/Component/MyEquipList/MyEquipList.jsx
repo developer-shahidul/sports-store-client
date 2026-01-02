@@ -23,7 +23,7 @@ const MyEquipList = () => {
     }
     const body = { email: user.email };
 
-    fetch(`http://localhost:3000/items/like/${id}`, {
+    fetch(`https://sports-store-server-ivory.vercel.app/items/like/${id}`, {
       method: "PATCH",
       headers: {
         "Content-type": "application/json",
@@ -42,7 +42,9 @@ const MyEquipList = () => {
   useEffect(() => {
     if (user?.email) {
       fetch(
-        `http://localhost:3000/items/user/${encodeURIComponent(user.email)}`
+        `https://sports-store-server-ivory.vercel.app/items/user/${encodeURIComponent(
+          user.email
+        )}`
       )
         .then((res) => res.json())
         .then((data) => setItems(data))
@@ -65,7 +67,7 @@ const MyEquipList = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/items/${id}`, {
+        fetch(`https://sports-store-server-ivory.vercel.app/items/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -89,7 +91,7 @@ const MyEquipList = () => {
   };
   return (
     <div className="max-w-330 mx-auto px-2 lg:px-0 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-40">
-      {items.map((item) => (
+      {items?.map((item) => (
         <div key={item._id}>
           <div className="rounded-xl w-67.5 relative z-10 text-center justify-self-center ">
             <div className="absolute right-1 top-8">
@@ -132,7 +134,7 @@ const MyEquipList = () => {
                   />
                 </div>
               </div>
-              <Link to={`/equipmetList/${item._id}`}>
+              <Link to={`/equipmentList/${item._id}`}>
                 <button className="px-4 py-2 w-full  text-center bg-[#000000] text-white   ">
                   Add to Cart
                 </button>

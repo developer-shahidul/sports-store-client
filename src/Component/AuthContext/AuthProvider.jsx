@@ -11,48 +11,45 @@ export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  // console.log(user);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true); // প্রথমে true রাখো — auth state চেক হওয়া পর্যন্ত লোডিং
 
+  // onAuthStateChanged — ইউজারের স্টেট চেক করবে
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      setLoading(false);
+      setLoading(false); // চেক শেষ, লোডিং বন্ধ
+      console.log("Auth state changed:", currentUser?.email || "No user");
     });
-    return () => unsubscribe();
+
+    return () => unsubscribe(); // cleanup
   }, []);
 
+  // Sign Up
   const createSignInUser = (email, password) => {
     setLoading(true);
-    return createUserWithEmailAndPassword(auth, email, password)
-      .then((result) => {
-        setUser(result.user); // ✅ save user
-        setLoading(false); // ✅ stop loading
-        return result;
-      })
-      .catch((error) => {
-        setLoading(false);
-        throw error;
-      });
+    return createUserWithEmailAndPassword(auth, email, password).finally(() => {
+      setLoading(false); // সাকসেস বা ফেল, লোডিং বন্ধ
+    });
   };
 
+  // Sign In
   const logInUser = (email, password) => {
     setLoading(true);
-    return signInWithEmailAndPassword(auth, email, password)
-      .then((result) => {
-        setUser(result.user); // ✅ save user
-        setLoading(false); // ✅ stop loading
-        return result;
-      })
-      .catch((error) => {
-        setLoading(false);
-        throw error;
-      });
+    return signInWithEmailAndPassword(auth, email, password).finally(() => {
+      setLoading(false);
+    });
   };
 
+  // Log Out
   const logOutUser = () => {
     setLoading(true);
-    return signOut(auth);
+    return signOut(auth)
+      .then(() => {
+        setUser(null); // ম্যানুয়ালি null করো (কখনো কখনো onAuthStateChanged দেরি করে)
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   const userInfo = {
